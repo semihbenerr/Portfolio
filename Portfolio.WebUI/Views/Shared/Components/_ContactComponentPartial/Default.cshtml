@@ -1,0 +1,73 @@
+﻿@using MyPortfolio.WebUI.DAL.Entities
+@model Message
+<section id="contact" class="s-contact target-section">
+    <style>
+        .s-contact {
+            background-image: url("https://i.hizliresim.com/arvq744.jpg");
+                
+        }
+    </style>
+    <div class="overlay"></div> 
+
+    <div class="row narrow section-intro">
+        <div class="col-full">
+            <h3>İletişim</h3>
+            <h1>Bana Ulaşın.</h1>
+
+            <p class="lead">Mesajlarınızı bana burdan gönderebilirsiniz.</p>
+        </div>
+    </div>
+
+    <div class="row contact__main">
+        <div class="col-eight tab-full contact__form">
+            <form asp-controller="Message" asp-action="MessageSubmit" method="post">
+                <fieldset>
+                    <br />
+                    <input type="text" asp-for="NameSurname" placeholder="İsim" class="form-control full-width" />
+                    <br />
+                    <input type="text" asp-for="Email" placeholder="Email" class="form-control full-width" />
+                    <br />
+                    <textarea rows="4" class="form-control" placeholder="Mesaj" asp-for="MessageDetail"></textarea>
+                    <br />
+                    <button class="full-width btn--primary">Gönder</button>
+                </fieldset>
+            </form>
+
+            <!-- contact-warning -->
+            <div class="message-warning">
+                Something went wrong. Please try again.
+            </div>
+
+            <!-- contact-success -->
+            <div class="message-success">
+                Your message was sent, thank you!<br>
+            </div>
+
+        </div>
+        <div class="col-four tab-full contact__main">
+            <h4 class="h06">Telefon</h4>
+            <p>
+                Mobile: <font face="times new roman">@ViewBag.phone1</font><br>
+            </p>
+
+            <h4 class="h06">Email</h4>
+            <p>
+                <font face="times new roman">
+                    @ViewBag.email1<br>
+                </font>
+                <font face="times new roman">
+                    @ViewBag.email2
+                </font>
+            </p>
+
+            <h4 class="h06">Adres</h4>
+            <p>
+                <font face="times new roman"> 
+                    @ViewBag.address<br>
+                </font> 
+            </p>
+        </div>
+
+    </div>
+
+</section>

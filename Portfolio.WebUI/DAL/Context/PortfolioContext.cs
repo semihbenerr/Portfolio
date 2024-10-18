@@ -7,7 +7,7 @@ namespace MyPortfolio.WebUI.DAL.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\local;Database=MyPortfolio;Trusted_Connection=True;Connect Timeout=30;MultipleActiveResultSets=True;");
+            optionsBuilder.UseSqlServer("Server=(localdb)\\local;Database=Portfolio;Trusted_Connection=True;Connect Timeout=30;MultipleActiveResultSets=True;");
         }
         public DbSet<About> Abouts { get; set; }
         public DbSet<Contact> Contacts { get; set; }
@@ -17,6 +17,7 @@ namespace MyPortfolio.WebUI.DAL.Context
         public DbSet<Portfolio> Portfolios { get; set; }
         public DbSet<Skill> Skills { get; set; }
         public DbSet<SocialMedia> SocialMedias { get; set; }
-        public DbSet<Testimonial> Testimonials { get; set; }
+        public DbSet<ToDoList> ToDoLists { get; set; }
+
     }
 }

@@ -1,0 +1,14 @@
+﻿@using MyPortfolio.WebUI.DAL.Entities
+@model List<SocialMedia>
+
+@foreach (var item in Model)
+{
+    <li>
+        <a href="@item.Url">
+            <i class="@item.Icon" aria-hidden="true"></i>
+            <span>@item.Title</span>
+        </a>
+    </li>
+}
+
+

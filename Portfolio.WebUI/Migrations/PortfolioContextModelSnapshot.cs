@@ -251,33 +251,31 @@ namespace MyPortfolio.WebUI.Migrations
                     b.ToTable("SocialMedias");
                 });
 
-            modelBuilder.Entity("MyPortfolio.WebUI.DAL.Entities.Testimonial", b =>
+            modelBuilder.Entity("MyPortfolio.WebUI.DAL.Entities.ToDoList", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ToDoListId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ToDoListId"), 1L, 1);
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NameSurname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ToDoListId");
 
-                    b.ToTable("Testimonials");
+                    b.ToTable("ToDoLists");
                 });
 #pragma warning restore 612, 618
         }
