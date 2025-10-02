@@ -1,0 +1,201 @@
+﻿@using MyPortfolio.WebUI.Areas.Admin.Models;
+@model DashboardViewModel;
+@{
+    int x = 0;
+}
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">İstatistikler</h4>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card card-stats card-warning">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="la la-users"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 d-flex align-items-center">
+                                <div class="numbers">
+                                    <p class="card-category">Yetenek Sayısı</p>
+                                    <h4 class="card-title">2</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card card-stats card-success">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="la la-bar-chart"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 d-flex align-items-center">
+                                <div class="numbers">
+                                    <p class="card-category">Projelerim</p>
+                                    <h4 class="card-title">3</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card card-stats card-danger">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="la la-newspaper-o"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 d-flex align-items-center">
+                                <div class="numbers">
+                                    <p class="card-category">İş deneyimim</p>
+                                    <h4 class="card-title">2</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card card-stats card-primary">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="la la-check-circle"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 d-flex align-items-center">
+                                <div class="numbers">
+                                    <p class="card-category">mesajlar</p>
+                                    <h4 class="card-title">4</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row row-card-no-pd">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header ">
+                        <h4 class="card-title">Yeteneklerim</h4>
+                    </div>
+                    <div class="card-body">
+                        @foreach (var item in Model.Skills)
+                        {
+                            <div class="progress-card">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="text-muted">@item.Title</span>
+                                    <span class="text-muted fw-bold"> @item.Value</span>
+                                </div>
+                                <div class="progress mb-2" style="height: 7px;">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: @item.Value" aria-valuenow="@item.Value" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="@item.Value">
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header ">
+                        <h4 class="card-title">İş Deneyimi</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-head-bg-success table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+
+                                </tr>
+                            </thead>
+                            @foreach (var item in Model.Experiences)
+                            {                              
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                    </tr>
+                                </tbody>
+                            }                          
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-tasks">
+                    <div class="card-header ">
+                        <h4 class="card-title">Mesajlarım</h4>
+                    </div>
+                    <div class="card-body ">
+                        <div class="table-full-width">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input  select-all-checkbox" type="checkbox" data-select="checkbox" data-target=".task-select">
+                                                    <span class="form-check-sign"></span>
+                                                </label>
+                                            </div>
+                                        </th>
+                                        <th>Ad Soyad</th>
+                                        <th>Mesaj İçeriği</th>
+                                        <th>Eylem</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input task-select" type="checkbox">
+                                                    <span class="form-check-sign"></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>Semih Bener</td>
+                                        <td>oıashfıohasoıfaıoshgoıashgoıhasgoıhasoıghasıoghıoahsgıoashgıohasıoghaoıshgoıashgıoas</td>
+                                        <td class="td-actions text-right">
+                                            <div class="form-button-action">
+                                                <button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link <btn-simple-primary">
+                                                    <i class="la la-edit"></i>
+                                                </button>
+                                                <button type="button" data-toggle="tooltip" title="Remove" class="btn btn-link btn-simple-danger">
+                                                    <i class="la la-times"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer ">
+                        <div class="stats">
+                            <i class="now-ui-icons loader_refresh spin"></i> Updated 3 minutes ago
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

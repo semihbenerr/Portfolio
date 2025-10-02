@@ -2,12 +2,12 @@
 using MyPortfolio.WebUI.DAL.Context;
 using MyPortfolio.WebUI.DAL.Entities;
 
-namespace MyPortfolio.WebUI.WebUI.Controllers
+namespace MyPortfolio.WebUI.Areas.Admin.Controllers
 {
     public class ExperienceController : Controller
     {
         PortfolioContext context = new PortfolioContext();
-        public IActionResult ExperienceList()
+        public IActionResult Index()
         {
             var values = context.Experiences.ToList();
             return View(values);

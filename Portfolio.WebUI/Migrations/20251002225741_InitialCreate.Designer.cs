@@ -12,7 +12,7 @@ using MyPortfolio.WebUI.DAL.Context;
 namespace MyPortfolio.WebUI.Migrations
 {
     [DbContext(typeof(PortfolioContext))]
-    [Migration("20241014203250_InitialCreate")]
+    [Migration("20251002225741_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

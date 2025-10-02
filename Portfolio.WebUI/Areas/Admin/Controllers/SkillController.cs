@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace MyPortfolio.WebUI.WebUI.Controllers
+namespace MyPortfolio.WebUI.Areas.Admin.Controllers
 {
-    public class LayoutController : Controller
+    public class SkillController : Controller
     {
         public IActionResult Index()
         {

@@ -2,7 +2,7 @@
 using MyPortfolio.WebUI.DAL.Context;
 using MyPortfolio.WebUI.DAL.Entities;
 
-namespace MyPortfolio.WebUI.WebUI.Controllers
+namespace MyPortfolio.WebUI.Areas.Admin.Controllers
 {
     public class MessageController : Controller
     {
@@ -46,7 +46,7 @@ namespace MyPortfolio.WebUI.WebUI.Controllers
         {
             context.Messages.Add(message);
             context.SaveChanges();
-            return RedirectToAction("Index","Default");
+            return RedirectToAction("Index", "Default");
         }
     }
 }

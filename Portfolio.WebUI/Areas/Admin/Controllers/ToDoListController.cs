@@ -2,7 +2,7 @@
 using MyPortfolio.WebUI.DAL.Context;
 using MyPortfolio.WebUI.DAL.Entities;
 
-namespace MyPortfolio.WebUI.Controllers
+namespace MyPortfolio.WebUI.Areas.Admin.Controllers
 {
     public class ToDoListController : Controller
     {
