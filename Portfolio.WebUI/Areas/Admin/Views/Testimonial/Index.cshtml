@@ -1,0 +1,56 @@
+@model List<Testimonial>
+@{
+    ViewData["Title"] = "Manage Testimonials";
+    Layout = "_AdminLayout";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">Manage Testimonials</h4>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Name</th>
+                        <th>Company</th>
+                        <th>Title</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.CreatedDate.ToString("MM/dd/yyyy")</td>
+                            <td>@item.FullName</td>
+                            <td>@item.Company</td>
+                            <td>@item.Title</td>
+                            <td>
+                                @if (item.IsApproved)
+                                {
+                                    <span class="badge badge-success">Approved</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-warning">Pending</span>
+                                }
+                            </td>
+                            <td>
+                                <a href="@Url.Action("ToggleApproval", new { id = item.Id })" class="btn btn-sm @(item.IsApproved ? "btn-warning" : "btn-success")">
+                                    @(item.IsApproved ? "Unapprove" : "Approve")
+                                </a>
+                                <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this testimonial?');">
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

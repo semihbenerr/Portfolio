@@ -12,7 +12,7 @@ using MyPortfolio.WebUI.DAL.Context;
 namespace MyPortfolio.WebUI.Migrations
 {
     [DbContext(typeof(PortfolioContext))]
-    [Migration("20251002225741_InitialCreate")]
+    [Migration("20251002231016_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -251,6 +251,49 @@ namespace MyPortfolio.WebUI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SocialMedias");
+                });
+
+            modelBuilder.Entity("MyPortfolio.WebUI.DAL.Entities.Testimonial", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Company")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LinkedInUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Testimonials");
                 });
 
             modelBuilder.Entity("MyPortfolio.WebUI.DAL.Entities.ToDoList", b =>

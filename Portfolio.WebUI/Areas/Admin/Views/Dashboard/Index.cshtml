@@ -1,0 +1,126 @@
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "_AdminLayout";
+}
+
+<h4 class="page-title">Ýstatistikler</h4>
+<div class="row">
+    <div class="col-md-3">
+        <div class="card card-stats card-warning">
+            <div class="card-body ">
+                <div class="row">
+                    <div class="col-5">
+                        <div class="icon-big text-center">
+                            <i class="la la-code"></i>
+                        </div>
+                    </div>
+                    <div class="col-7 d-flex align-items-center">
+                        <div class="numbers">
+                            <p class="card-category">Yetenek Sayýsý</p>
+                            <h4 class="card-title">@ViewBag.SkillCount</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-stats card-success">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-5">
+                        <div class="icon-big text-center">
+                            <i class="la la-folder-open"></i>
+                        </div>
+                    </div>
+                    <div class="col-7 d-flex align-items-center">
+                        <div class="numbers">
+                            <p class="card-category">Projelerim</p>
+                            <h4 class="card-title">@ViewBag.ProjectCount</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-stats card-danger">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-5">
+                        <div class="icon-big text-center">
+                            <i class="la la-briefcase"></i>
+                        </div>
+                    </div>
+                    <div class="col-7 d-flex align-items-center">
+                        <div class="numbers">
+                            <p class="card-category">Ýþ deneyimi</p>
+                            <h4 class="card-title">@ViewBag.ExperienceCount</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-stats card-primary">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-5">
+                        <div class="icon-big text-center">
+                            <i class="la la-envelope"></i>
+                        </div>
+                    </div>
+                    <div class="col-7 d-flex align-items-center">
+                        <div class="numbers">
+                            <p class="card-category">Okunmamýþ Mesaj</p>
+                            <h4 class="card-title">@ViewBag.UnreadMessageCount</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Son Mesajlar</h4>
+            </div>
+            <div class="card-body">
+                <table class="table table-head-bg-primary">
+                    <thead>
+                        <tr>
+                            <th scope="col">Gönderen</th>
+                            <th scope="col">Konu</th>
+                            <th scope="col">Tarih</th>
+                            <th scope="col">Durum</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var message in ViewBag.Messages ?? new List<Message>())
+                        {
+                            <tr>
+                                <td>@message.NameSurname</td>
+                                <td>@message.Subject</td>
+                                <td>@message.SendDate.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    @if (message.IsRead)
+                                    {
+                                        <span class="badge badge-success">Okundu</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge badge-warning">Okunmadý</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

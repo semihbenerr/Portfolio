@@ -1,0 +1,61 @@
+@using MyPortfolio.WebUI.DAL.Entities
+@model List<Testimonial>
+@{
+    ViewData["Title"] = "References & Testimonials";
+    ViewData["Description"] = "Read what others say about working with me - testimonials and references from colleagues and clients.";
+}
+
+@await Html.PartialAsync("_SeoMetaTagsPartial")
+
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="text-center">References & Testimonials</h2>
+            <p class="text-center">What others say about working with me</p>
+            @if (TempData["Message"] != null)
+            {
+                <div class="alert alert-success">
+                    @TempData["Message"]
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 mb-4">
+            <a href="@Url.Action("AddTestimonial")" class="btn btn-primary">Add Your Testimonial</a>
+        </div>
+    </div>
+
+    <div class="row">
+        @foreach (var testimonial in Model)
+        {
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            @if (!string.IsNullOrEmpty(testimonial.ImageUrl))
+                            {
+                                <img src="@testimonial.ImageUrl" alt="@testimonial.FullName" class="rounded-circle mr-3" style="width: 60px; height: 60px; object-fit: cover;" />
+                            }
+                            <div>
+                                <h5 class="card-title mb-0">@testimonial.FullName</h5>
+                                <p class="card-subtitle text-muted">@testimonial.Title at @testimonial.Company</p>
+                            </div>
+                        </div>
+                        <p class="card-text">@testimonial.Comment</p>
+                        @if (!string.IsNullOrEmpty(testimonial.LinkedInUrl))
+                        {
+                            <a href="@testimonial.LinkedInUrl" target="_blank" class="btn btn-outline-primary btn-sm">
+                                <i class="fab fa-linkedin"></i> Connect on LinkedIn
+                            </a>
+                        }
+                    </div>
+                    <div class="card-footer text-muted">
+                        @testimonial.CreatedDate.ToString("MMMM dd, yyyy")
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

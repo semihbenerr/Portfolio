@@ -1,0 +1,68 @@
+@using MyPortfolio.WebUI.DAL.Entities
+@model Testimonial
+@{
+    ViewData["Title"] = "Add Testimonial";
+    ViewData["Description"] = "Share your experience working with me - Add your testimonial or reference.";
+}
+
+@await Html.PartialAsync("_SeoMetaTagsPartial")
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Add Your Testimonial</h2>
+                </div>
+                <div class="card-body">
+                    <form asp-action="AddTestimonial" method="post">
+                        <div class="form-group mb-3">
+                            <label asp-for="FullName">Full Name</label>
+                            <input asp-for="FullName" class="form-control" required />
+                            <span asp-validation-for="FullName" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Company">Company</label>
+                            <input asp-for="Company" class="form-control" required />
+                            <span asp-validation-for="Company" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Title">Job Title</label>
+                            <input asp-for="Title" class="form-control" required />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Comment">Your Testimonial</label>
+                            <textarea asp-for="Comment" class="form-control" rows="5" required></textarea>
+                            <span asp-validation-for="Comment" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="ImageUrl">Profile Image URL (Optional)</label>
+                            <input asp-for="ImageUrl" class="form-control" />
+                            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="LinkedInUrl">LinkedIn Profile URL (Optional)</label>
+                            <input asp-for="LinkedInUrl" class="form-control" />
+                            <span asp-validation-for="LinkedInUrl" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit Testimonial</button>
+                            <a asp-action="Index" class="btn btn-secondary">Back to Testimonials</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
