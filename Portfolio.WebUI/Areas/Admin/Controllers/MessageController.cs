@@ -4,49 +4,26 @@ using MyPortfolio.WebUI.DAL.Entities;
 
 namespace MyPortfolio.WebUI.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class MessageController : Controller
     {
-        PortfolioContext context = new PortfolioContext();
-        public IActionResult Inbox()
+        private readonly PortfolioContext _context;
+        public MessageController(PortfolioContext context)
         {
-            var values = context.Messages.ToList();
-            return View(values);
-        }
-        public IActionResult ChangeIsReadToTrue(int id)
-        {
-            var value = context.Messages.Find(id);
-            value.IsRead = true;
-            context.SaveChanges();
-            return RedirectToAction("Inbox");
+            _context = context;
         }
 
-        public IActionResult ChangeIsReadToFalse(int id)
-        {
-            var value = context.Messages.Find(id);
-            value.IsRead = false;
-            context.SaveChanges();
-            return RedirectToAction("Inbox");
-        }
+        public IActionResult Index() => View(_context.Messages.ToList());
 
-        public IActionResult DeleteMessage(int id)
+        public IActionResult Delete(int id)
         {
-            var value = context.Messages.Find(id);
-            context.Messages.Remove(value);
-            context.SaveChanges();
-            return RedirectToAction("Inbox");
-        }
-        public IActionResult MessageDetail(int id)
-        {
-            var value = context.Messages.Find(id);
-            return View(value);
-        }
-
-        [HttpPost]
-        public IActionResult MessageSubmit(Message message)
-        {
-            context.Messages.Add(message);
-            context.SaveChanges();
-            return RedirectToAction("Index", "Default");
+            var message = _context.Messages.Find(id);
+            if (message != null)
+            {
+                _context.Messages.Remove(message);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Index");
         }
     }
 }

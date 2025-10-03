@@ -3,10 +3,10 @@ using MyPortfolio.WebUI.DAL.Context;
 
 namespace MyPortfolio.WebUI.Areas.Admin.Controllers
 {
-    public class DashboardController : AdminBaseController
+    [Area("Admin")]
+    public class DashboardController : Controller
     {
         private readonly PortfolioContext _context;
-
         public DashboardController(PortfolioContext context)
         {
             _context = context;
@@ -14,12 +14,14 @@ namespace MyPortfolio.WebUI.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.SkillCount = _context.Skills.Count();
-            ViewBag.ProjectCount = _context.Portfolios.Count();
-            ViewBag.ExperienceCount = _context.Experiences.Count();
-            ViewBag.MessageCount = _context.Messages.Count();
-            ViewBag.UnreadMessageCount = _context.Messages.Count(x => !x.IsRead);
-            return View();
+            var model = new
+            {
+                SkillCount = _context.Skills.Count(),
+                ExperienceCount = _context.Experiences.Count(),
+                MessageCount = _context.Messages.Count(),
+                TestimonialCount = _context.Testimonials.Count()
+            };
+            return View(model);
         }
     }
 }

@@ -1,3 +1,5 @@
+using MyPortfolio.WebUI.Middlewares;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -17,7 +19,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+// Add this line before app.UseRouting();
+app.UseMiddleware<IpRestrictionMiddleware>();
 app.UseAuthorization();
 
 app.MapAreaControllerRoute(
@@ -32,3 +35,11 @@ app.MapControllerRoute(
 
 
 app.Run();
+
+// ... existing code ...
+
+
+
+
+
+// ... existing code ...

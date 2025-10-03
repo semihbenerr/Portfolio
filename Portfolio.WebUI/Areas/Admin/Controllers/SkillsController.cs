@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using MyPortfolio.WebUI.DAL.Context;
 using MyPortfolio.WebUI.Areas.Admin.Models;
 using MyPortfolio.WebUI.DAL.Entities;
@@ -6,54 +6,54 @@ using MyPortfolio.WebUI.DAL.Entities;
 namespace MyPortfolio.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class ExperienceController : Controller
+    public class SkillsController : Controller
     {
         private readonly PortfolioContext _context;
-        public ExperienceController(PortfolioContext context)
+        public SkillsController(PortfolioContext context)
         {
             _context = context;
         }
 
-        public IActionResult Index() => View(_context.Experiences.ToList());
+        public IActionResult Index() => View(_context.Skills.ToList());
 
         public IActionResult Add() => View();
 
         [HttpPost]
-        public IActionResult Add(Experience experience)
+        public IActionResult Add(Skill skill)
         {
             if (ModelState.IsValid)
             {
-                _context.Experiences.Add(experience);
+                _context.Skills.Add(skill);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(experience);
+            return View(skill);
         }
 
         public IActionResult Edit(int id)
         {
-            var experience = _context.Experiences.Find(id);
-            return experience == null ? NotFound() : View(experience);
+            var skill = _context.Skills.Find(id);
+            return skill == null ? NotFound() : View(skill);
         }
 
         [HttpPost]
-        public IActionResult Edit(Experience experience)
+        public IActionResult Edit(Skill skill)
         {
             if (ModelState.IsValid)
             {
-                _context.Experiences.Update(experience);
+                _context.Skills.Update(skill);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(experience);
+            return View(skill);
         }
 
         public IActionResult Delete(int id)
         {
-            var experience = _context.Experiences.Find(id);
-            if (experience != null)
+            var skill = _context.Skills.Find(id);
+            if (skill != null)
             {
-                _context.Experiences.Remove(experience);
+                _context.Skills.Remove(skill);
                 _context.SaveChanges();
             }
             return RedirectToAction("Index");

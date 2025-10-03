@@ -1,35 +1,51 @@
 using Microsoft.AspNetCore.Mvc;
 using MyPortfolio.WebUI.DAL.Context;
+using MyPortfolio.WebUI.Areas.Admin.Models;
 using MyPortfolio.WebUI.DAL.Entities;
 
 namespace MyPortfolio.WebUI.Areas.Admin.Controllers
 {
-    public class TestimonialController : AdminBaseController
+    [Area("Admin")]
+    public class TestimonialController : Controller
     {
         private readonly PortfolioContext _context;
-
         public TestimonialController(PortfolioContext context)
         {
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index() => View(_context.Testimonials.ToList());
+
+        public IActionResult Add() => View();
+
+        [HttpPost]
+        public IActionResult Add(Testimonial testimonial)
         {
-            var testimonials = _context.Testimonials
-                .OrderByDescending(t => t.CreatedDate)
-                .ToList();
-            return View(testimonials);
+            if (ModelState.IsValid)
+            {
+                _context.Testimonials.Add(testimonial);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(testimonial);
         }
 
-        public IActionResult ToggleApproval(int id)
+        public IActionResult Edit(int id)
         {
             var testimonial = _context.Testimonials.Find(id);
-            if (testimonial != null)
+            return testimonial == null ? NotFound() : View(testimonial);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Testimonial testimonial)
+        {
+            if (ModelState.IsValid)
             {
-                testimonial.IsApproved = !testimonial.IsApproved;
+                _context.Testimonials.Update(testimonial);
                 _context.SaveChanges();
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            return View(testimonial);
         }
 
         public IActionResult Delete(int id)
