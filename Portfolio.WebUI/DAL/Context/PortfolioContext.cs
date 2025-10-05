@@ -19,6 +19,9 @@ namespace MyPortfolio.WebUI.DAL.Context
         public DbSet<SocialMedia> SocialMedias { get; set; }
         public DbSet<ToDoList> ToDoLists { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<SeoSetting> SeoSettings { get; set; }
+        public DbSet<SiteSetting> SiteSettings { get; set; }
 
     }
 }

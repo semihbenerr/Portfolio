@@ -19,7 +19,6 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-// Add this line before app.UseRouting();
 app.UseMiddleware<IpRestrictionMiddleware>();
 app.UseAuthorization();
 
@@ -36,10 +35,4 @@ app.MapControllerRoute(
 
 app.Run();
 
-// ... existing code ...
 
-
-
-
-
-// ... existing code ...
